@@ -13,7 +13,7 @@ void ft_minishell(char *line)
 		add_history(line);
 		ft_check_line(line);
 		token  = ft_list_tokn(line, token);
-		if (check_syntax(token) == 1)
+		if (token == NULL || check_syntax(token) == 1)
 		{
 			ft_lstclear_token(&token);
 			continue;
@@ -29,7 +29,6 @@ int main (int argc, char **argv, char **env)
 	(void)env;
 	(void)argc;
 	(void)argv;
-
 	line = NULL;
 	ft_minishell(line);
 }

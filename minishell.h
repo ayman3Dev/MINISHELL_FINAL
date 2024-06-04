@@ -6,6 +6,7 @@
 #include <readline/readline.h>
 #include <stdio.h>
 #include <string.h>
+#include <signal.h>
 #include <readline/history.h>
 
 //  #define PIPE 0

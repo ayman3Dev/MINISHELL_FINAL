@@ -26,6 +26,7 @@ t_word *ft_list_tokn(char *all_command, t_word *token)
 	all_split = ft_split(line, ' ');
 	if (all_split == NULL)
 		return (NULL);
+	free(line);
 	t_word *word = NULL;
 	while (all_split[i])
 	{
