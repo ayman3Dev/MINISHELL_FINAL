@@ -1,42 +1,49 @@
 #include "minishell.h"
 
-void ft_free_split(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != NULL)
-	{
-		free(str[i]);
-		i++;
-	}
-}
-
 t_word *ft_list_tokn(char *all_command, t_word *token)
 {
-	char *line;
-	int i = 0;
-	char **all_split;
+	int	i;
+	int	sign;
+	int	size;
+	t_word *word;
 
-	if (all_command == NULL)
-		return (NULL);
-	line = line_with_space(all_command);
-	if (line == NULL)
-		return (NULL);
-	all_split = ft_split(line, ' ');
-	if (all_split == NULL)
-		return (NULL);
-	free(line);
-	t_word *word = NULL;
-	while (all_split[i])
+	word = NULL;
+	size= 0;
+	sign = 0;
+	i = 0;
+	while(all_command[i] != '\0')
 	{
-		word = ft_addlist_token(all_split[i]);
-		if (word == NULL)
-			return(NULL);
+		while (ft_is_space(all_command[i]) == 1) // all_command[i] != '\0'
+			i++;
+		ft_check_quotes(all_command[i], &sign);
+		if (sign == 0 && ((all_command[i] == '>' && all_command[i + 1] == '>')
+				|| (all_command[i] == '<' && all_command[i + 1] == '<')))
+		{
+			word = ft_addlist_token(ft_substr(all_command, i, 2));
+			i += 2;
+		}
+		else if (sign == 0 && ((check_char(all_command[i])) != NULL))
+		{
+			word = ft_addlist_token(ft_strdup((check_char(all_command[i]))));
+			i++;
+		}
+		else
+		{
+			size = i;
+			while ((check_space(all_command[i], sign)) == 1)
+			{
+				i++;
+				ft_check_quotes(all_command[i], &sign);
+			}
+			word = ft_addlist_token(ft_substr(all_command, size, i - size));
+		}
 		ft_lstaddback_token(&token, word);
-		i++;
 	}
-	if (token == NULL)
-		ft_free_split(all_split);
+	puts("token\n");
+	while(token != NULL)
+	{
+		printf("word : %s    type: %d\n", token->value, token->type);
+		token = token->next;
+	}
 	return(token);
 }

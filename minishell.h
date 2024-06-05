@@ -62,20 +62,23 @@ int	ft_check_line(char *line);
 t_word		*ft_list_tokn(char *all_command, t_word *token);
 t_word		*ft_addlist_token(char *word);
 void		ft_lstaddback_token(t_word **list, t_word*new_node);
-int			ft_strlen_space(char *line);
-char		*line_with_space(char *line);
 //token_list
 
 
 //libft
 int			ft_strcmp(const char *s1, const char *s2);
 char		**ft_split(char const *s, char c);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_strdup(const char *s1);
+size_t		ft_strlen(const char *s);
 //libft
 
 //chech_syntax
 int			check_syntax(t_word *token);
 int			ft_check_quotes(char c, int *sign);
-
+int			check_space(char c, int sign);
+int			ft_is_space(char c);
+char		*check_char(char c);
 //list_function
 void	ft_lstclear_token(t_word **list);
 
