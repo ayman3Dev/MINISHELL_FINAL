@@ -30,10 +30,12 @@ t_word *ft_list_tokn(char *all_command, t_word *token)
 		else
 		{
 			size = i;
-			while ((check_space(all_command[i], sign)) == 1)
+			while ((check_space(all_command[i], sign)) == 1 && all_command[i] != '\0')
 			{
 				i++;
+				// printf("before sign : %d      ", sign);
 				ft_check_quotes(all_command[i], &sign);
+				// printf("sign : %d\n", sign);
 			}
 			word = ft_addlist_token(ft_substr(all_command, size, i - size));
 		}
@@ -42,7 +44,7 @@ t_word *ft_list_tokn(char *all_command, t_word *token)
 	puts("token\n");
 	while(token != NULL)
 	{
-		printf("word : %s    type: %d\n", token->value, token->type);
+		printf("word : {%s}    type: %d\n", token->value, token->type);
 		token = token->next;
 	}
 	return(token);

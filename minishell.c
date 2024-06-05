@@ -11,7 +11,6 @@ void ft_minishell(char *line)
 		if (!line)
 			break;
 		add_history(line);
-		ft_check_line(line);
 		token  = ft_list_tokn(line, token);
 		if (token == NULL || check_syntax(token) == 1)
 		{

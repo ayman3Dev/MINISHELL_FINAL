@@ -56,7 +56,6 @@ typedef struct s_word
 	struct s_word	*prev;
 }	t_word;
 
-int	ft_check_line(char *line);
 
 //token_list
 t_word		*ft_list_tokn(char *all_command, t_word *token);
