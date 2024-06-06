@@ -1,7 +1,6 @@
 #include "minishell.h"
 
-
-int ft_check_quotes(char c, int *sign)
+int	ft_check_quotes(char c, int *sign)
 {
 	if (c == '"' && *sign == 2)
 		*sign = 0;

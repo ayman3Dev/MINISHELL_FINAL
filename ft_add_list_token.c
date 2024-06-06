@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 t_word	*ft_addlist_token(char *word)
@@ -6,13 +5,13 @@ t_word	*ft_addlist_token(char *word)
 	t_word	*new_node;
 
 	if (word == NULL)
-		return(NULL);
+		return (NULL);
 	new_node = (t_word *)malloc(sizeof(t_word));
 	if (new_node == NULL)
 		return (NULL);
 	new_node->next = NULL;
 	new_node->value = word;
-	if (ft_strcmp(word , "<") == 0)
+	if (ft_strcmp(word, "<") == 0)
 		new_node->type = L_RED;
 	else if (ft_strcmp(word, ">") == 0)
 		new_node->type = R_RED;
