@@ -50,6 +50,9 @@ int	check_token(int type)
 
 int	check_syntax(t_word *token)
 {
+	t_word *tmp;
+
+	tmp = token;
 	if (token == NULL)
 		return (1);
 	if (token->type == PIPE)
@@ -79,5 +82,6 @@ int	check_syntax(t_word *token)
 		}
 		token = token->next;
 	}
+	token = tmp;
 	return (0);
 }

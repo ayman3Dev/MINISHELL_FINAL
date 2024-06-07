@@ -95,7 +95,6 @@ int lenght_no_quotes(t_word *token)
 int remove_quotes(t_word *token)
 {
 	t_word *tmp = token;
-	int	quotes;
 	int	sign;
 	int	i;
 	int	j;
@@ -105,13 +104,17 @@ int remove_quotes(t_word *token)
 		i = 0;
 		j = 0;
 		sign = 0;
-		quotes = 0;
 		token->val_noquotes = malloc(lenght_no_quotes(token) + 1);
+		token->quotes_type = 0;
 		while (token->value[i] != '\0')
 		{
 			ft_check_quotes(token->value[i], &sign);
 			if (sign != 0)
 			{
+				if (sign == 1)
+					token->quotes_type = 1;
+				else if (sign == 2)
+					token->quotes_type = 2;
 				i++;
 				ft_check_quotes(token->value[i], &sign);
 				while (sign != 0)
@@ -122,7 +125,6 @@ int remove_quotes(t_word *token)
 					ft_check_quotes(token->value[i], &sign);
 				}
 				i++;
-				quotes += 2;
 			}
 			else
 			{
@@ -135,9 +137,10 @@ int remove_quotes(t_word *token)
 		token->val_noquotes[j] = '\0';
 		token = token->next;
 	}
+	token = tmp;
 	while(tmp != NULL)
 	{
-		printf("word : {%s}\n", tmp->val_noquotes);
+		printf("word : {%s} , type : %d\n", tmp->val_noquotes, tmp->quotes_type);
 		tmp = tmp->next;
 	}
 	return (0);

@@ -27,11 +27,11 @@ typedef struct s_red_node
 	struct s_red_node	*next;
 }	t_red_node;
 
-typedef struct s_com_node
+typedef struct s_cmd_node
 {
 	char				**command;
-	struct s_com_node	*next;
-}	t_com_node;
+	struct s_cmd_node	*next;
+}	t_cmd_node;
 
 typedef struct s_node
 {
@@ -40,7 +40,7 @@ typedef struct s_node
 	char			**command;
 	char			**com;
 	t_red_node		*red;
-	t_com_node		*cmd;
+	t_cmd_node		*cmd;
 	struct s_node	*next;
 }	t_node;
 
@@ -50,6 +50,7 @@ typedef struct s_word
 	t_type			type;
 	char			*value;
 	char			*val_noquotes;
+	int				quotes_type;
 	int				here_doc_fd;
 	struct s_word	*next;
 	struct s_word	*prev;
@@ -79,7 +80,7 @@ int			check_space(char c, int sign);
 int			ft_is_space(char c);
 char		*check_char(char c);
 int			check_quotes(char *line);
-int			check_red(int type)
+int			check_red(int type);
 
 //list_function
 void		ft_lstclear_token(t_word **list);
@@ -87,5 +88,8 @@ void		ft_lstclear_token(t_word **list);
 
 //list_files
 void		ft_list_file(t_word	*token, t_red_node *files);
+
+//listcommands
+void ft_list_cmd (t_word	*token, t_cmd_node *cmd);
 
 #endif
