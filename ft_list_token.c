@@ -126,12 +126,7 @@ t_word	*ft_list_tokn(char *all_command, t_word *token, t_env *envirment)
 		}
 		ft_lstaddback_token(&token, word);
 	}
-	// t_word *tmp = token;
-	// while(tmp != NULL)
-	// {
-	// 	printf("word : {%s}    type: %d\n", tmp->value, tmp->type);
-	// 	tmp = tmp->next;
-	// }
+
 	return (token);		
 }
 
