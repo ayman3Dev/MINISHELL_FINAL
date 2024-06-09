@@ -12,7 +12,7 @@ void	ft_lstclear_token(t_word **list)
 		tmp = (*list);
 		(*list) = (*list)->next;
 		free(tmp->value);
-		free(tmp->val_noquotes);
+		// free(tmp->val_noquotes);
 		free(tmp);
 	}
 	*list = NULL;

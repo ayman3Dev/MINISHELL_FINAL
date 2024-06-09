@@ -22,6 +22,9 @@
 		"__hash_table": "c",
 		"__tuple": "c",
 		"array": "c",
-		"utility": "c"
+		"utility": "c",
+		"stdlib.h": "c",
+		"locale": "c",
+		"typeinfo": "c"
 	}
 }

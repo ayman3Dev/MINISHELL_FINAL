@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char *check_char(char c)
+char	*check_char(char c)
 {
 	if (c == '|')
 		return ("|");
@@ -18,14 +18,22 @@ int	ft_is_space(char c)
 	return (0);
 }
 
+int	check_char_expand (char c)
+{
+	if (c == 32 || (c >= 9 && c <= 13) || c == '|'
+		|| c == '>' || c == '<' || c == '"' || c == '\0')
+		return (0);
+
+	return (1);
+}
+
 int	check_space(char c, int sign)
 {
 	if (sign == 0)
 	{
 		if (c == 32 || (c >= 9 && c <= 13) || c == '|'
-			|| c == '>' || c == '<' || c == '\0')
+			|| c == '>' || c == '<' || c == '$' || c == '\0')
 			return (0);
-
 	}
 	return (1);
 }

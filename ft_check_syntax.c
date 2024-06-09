@@ -4,7 +4,8 @@ void	print_error(char *token)
 {
 	printf("syntax error near unexpected token `%s'\n", token);
 }
-int check_quotes(char *line)
+
+int	check_quotes(char *line)
 {
 	int	sign;
 	int	i;
@@ -22,6 +23,7 @@ int check_quotes(char *line)
 		return (free(line), print_error("\""), 1);
 	return (0);
 }
+
 int	check_red(int type)
 {
 	if ((type == L_RED
@@ -33,7 +35,6 @@ int	check_red(int type)
 	}
 	return (0);
 }
-
 
 int	check_token(int type)
 {

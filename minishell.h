@@ -33,17 +33,16 @@ typedef struct s_cmd_node
 	struct s_cmd_node	*next;
 }	t_cmd_node;
 
-typedef struct s_node
-{
-	int				data;
-	char			**redirection;
-	char			**command;
-	char			**com;
-	t_red_node		*red;
-	t_cmd_node		*cmd;
-	struct s_node	*next;
-}	t_node;
-
+// typedef struct s_node
+// {
+// 	int				data;
+// 	char			**redirection;
+// 	char			**command;
+// 	char			**com;
+// 	t_red_node		*red;
+// 	t_cmd_node		*cmd;
+// 	struct s_node	*next;
+// }	t_node;
 
 typedef struct s_word
 {
@@ -56,14 +55,23 @@ typedef struct s_word
 	struct s_word	*prev;
 }	t_word;
 
+//expand
+typedef struct s_env
+{
+	char			*variable;
+	char			*value;
+	char			*fil;
+	long			status;
+	struct s_env	*next;
+}	t_env;
+//expand
 
 //token_list
-t_word		*ft_list_tokn(char *all_command, t_word *token);
+t_word		*ft_list_tokn(char *all_command, t_word *token, t_env *envirment);
 t_word		*ft_addlist_token(char *word);
 void		ft_lstaddback_token(t_word **list, t_word*new_node);
 int			remove_quotes(t_word *token);
 //token_list
-
 
 //libft
 int			ft_strcmp(const char *s1, const char *s2);
@@ -71,6 +79,9 @@ char		**ft_split(char const *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strdup(const char *s1);
 size_t		ft_strlen(const char *s);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		*ft_itoa(int n);
+long		ft_atoi(const char *str, t_env *env);
 //libft
 
 //chech_syntax
@@ -85,11 +96,22 @@ int			check_red(int type);
 //list_function
 void		ft_lstclear_token(t_word **list);
 
-
 //list_files
 void		ft_list_file(t_word	*token, t_red_node *files);
 
 //listcommands
-void ft_list_cmd (t_word	*token, t_cmd_node *cmd);
+void		ft_list_cmd(t_word *token, t_cmd_node *cmd);
 
+//print error
+void		print_error(char *token);
+
+//expand
+void		ft_env(char **ev, t_env **env);
+int			size_stack(t_env *a);
+void		ft_lstadd_back(t_env **lst, t_env *new);
+t_env		*ft_lstlast(t_env *lst);
+t_env		*ft_lstnew(char *var, char *value);
+t_env		*point_node(t_env *env, char *name);
+char		*get_variabl(char *line);
+int			check_char_expand (char c);
 #endif

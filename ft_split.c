@@ -4,7 +4,7 @@ int	ft_countword(char const *s, char c)
 {
 	int	i;
 	int	size;
-	int sign;
+	int	sign;
 
 	sign = 0;
 	if (s == NULL)
@@ -19,7 +19,6 @@ int	ft_countword(char const *s, char c)
 		}
 		if (s[i])
 			size++;
-		
 		while (s[i] && (s[i] != c || sign != 0))
 		{
 			ft_check_quotes(s[i], &sign);
@@ -60,7 +59,7 @@ static char	*allocate_string(const char *s, int start, int end)
 static int	len_worlds(char const *s, char c)
 {
 	int	j;
-	int sign;
+	int	sign;
 
 	sign = 0;
 	j = 0;
